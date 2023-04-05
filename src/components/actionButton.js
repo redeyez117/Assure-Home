@@ -1,7 +1,8 @@
-const ActionButton = ({status, label, onClick, type, className}) => {
+const ActionButton = ({status, label, disabled, onClick, type, className}) => {
     return (
         <button 
-          disabled={status === 'ACTIVE'} 
+          onClick={onClick}
+          disabled={disabled} 
           className={`action_button ${type === 'active' ? 'activate' : 'suspend'} ${className}`}
         >
             {label}

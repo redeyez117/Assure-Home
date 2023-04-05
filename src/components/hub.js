@@ -1,9 +1,8 @@
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import moment from 'moment';
-import { useState } from 'react';
 import ActionButton from './actionButton';
-const Hub = ({item, addFavouriteHub, removeFromFavourite}) => {
+const Hub = ({item, addFavouriteHub, removeFromFavourite, changedHubStatus}) => {
     
     const add = (hub) => {
        const likedHub = {...hub, favourite: true}
@@ -15,6 +14,11 @@ const Hub = ({item, addFavouriteHub, removeFromFavourite}) => {
        removeFromFavourite(unLiked)
     }
 
+    const changeStatus = (value) => {
+       const modifiedHub = {...item, status:value, latest_updated: new Date()}
+       changedHubStatus(modifiedHub)
+    }
+
     return(
         <div className="hub">
           <p>Serial No: <span className="hub_serial_number">{item.serialNo}</span></p>
@@ -22,10 +26,10 @@ const Hub = ({item, addFavouriteHub, removeFromFavourite}) => {
                {item.status}
             </span>
           </p>
-          <p>Latest update: <span className="hub_latest_update">{moment(item.latest_update).format('DD MMM YYYY HH:mm')}</span></p>
+          <p>Latest update: <span className="hub_latest_update">{moment(item.latest_updated).format('DD MMM YYYY HH:mm:ss')}</span></p>
           <div className="hub_button_group">
-            <ActionButton type='active' label="Activate" status="ACTIVE" className={item.status === 'ACTIVE' ? 'disabled active_background' : ''}/>
-            <ActionButton type='suspend' label="Suspend" status="SUSPEND" className={item.status === 'SUSPENDED' ? 'disabled suspend_background' : ''}/>
+            <ActionButton onClick={()=> changeStatus('ACTIVE')} type='active' label="Activate" disabled={item.status === 'ACTIVE'} status="ACTIVE" className={item.status === 'ACTIVE' ? 'disabled active_background' : ''}/>
+            <ActionButton onClick={()=> changeStatus('SUSPENDED')} type='suspend' label="Suspend" disabled={item.status === 'SUSPENDED'} status="SUSPENDED" className={item.status === 'SUSPENDED' ? 'disabled suspend_background' : ''}/>
           </div>
           { item.favourite ? 
             <FavoriteOutlinedIcon onClick={() => remove(item)} className={`favorite-icon ${item.favourite ? 'toggled' : ''}`}/>
