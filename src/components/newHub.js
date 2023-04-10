@@ -27,7 +27,7 @@ const NewHub = ({closeForm, add, filteredHubs}) => {
     }
     
     return (
-        <div className="add-hub-form">
+        <div data-testid='new-hub-div' className="add-hub-form">
             <input value={hub} onChange={(e)=>setHub(e.target.value)} placeholder="Serial number ex H542k...." className="search-input"/>
             <button onClick={()=>addNewHub(hub)} className="action_button form_btn">ADD</button>
             <button onClick={() => cancelCreation(false)} className="action_btn close_form_btn">Cancel</button>

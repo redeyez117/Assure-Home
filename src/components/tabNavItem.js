@@ -5,7 +5,7 @@ const TabNavItem = ({ id, title, activeTab, setActiveTab }) => {
     };
     
    return (
-      <li onClick={handleClick} className={activeTab === id ? "active" : ""}>
+      <li data-testid='tab-list' onClick={handleClick} className={activeTab === id ? "active" : ""}>
         { title }
       </li>
     );

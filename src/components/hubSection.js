@@ -59,8 +59,8 @@ const HubSection = () => {
           ></TabNavItem>
         </ul>
         <div className="search-section">
-        <input onChange={(e)=>handleSearch(e.target.value)} className="search-input" placeholder="Search hub..."/>
-        {activeTab === 'tab1' && <button onClick={()=>setIsAdding(true)} className="action_button add_hub_btn">CREATE HUB</button>}
+        <input data-testid='searchbox' onChange={(e)=>handleSearch(e.target.value)} className="search-input" placeholder="Search hub..."/>
+        {activeTab === 'tab1' && <button data-testid="create-hub" onClick={()=>setIsAdding(true)} className="action_button add_hub_btn">CREATE HUB</button>}
         </div>
         {isAdding && activeTab ==='tab1' && <NewHub filteredHubs={filteredHubs} activeTab={activeTab} add={newHubAdded} closeForm={setIsAdding}/>}
           <TabContent id="tab1" activeTab={activeTab}>

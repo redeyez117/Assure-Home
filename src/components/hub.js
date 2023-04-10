@@ -20,7 +20,7 @@ const Hub = ({item, addFavouriteHub, removeFromFavourite, changedHubStatus}) => 
     }
 
     return(
-        <div className="hub">
+        <div data-testid="single-hub" className="hub">
           <p>Serial No: <span className="hub_serial_number">{item.serialNo}</span></p>
           <p>Status: <span className={item.status === 'NEW' ? 'new' : item.status === 'ACTIVE' ? 'status_active' : 'status_suspend'}>
                {item.status}
